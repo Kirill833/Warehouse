@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="product_container">
+    <p class="title_name_wh">{{ name }}</p>
+
+    <div class="bd-example m-5">
+	  <table class="table table-success table-striped">
+		  <thead>
+			<tr>
+			  <th scope="col"></th>
+			  <th scope="col">Название товара</th>
+			  <th scope="col">Количество</th>
+			  <th scope="col"></th>
+			</tr>
+		  </thead>
+		  <tbody>
+          {% for ord in ords %}
+			<tr>
+			  <th scope="row">{{ loop.index }}</th>
+			  <td>{{ ord.Creat_product.name_pt }}</td>
+			  <td>{{ ord.Orders_pt.quantity }}  <i style="margin-left: 10px;">{{ord.Creat_product.units }}</i></td>
+			  <td>
+{#                  <a style="color: red" href="{{ url_for('orders') +'/'+ ord.id.__str__() }}">Удалить</a>#}
+                  <a style="color: red" href="{{ url_for('delete_order_view', id_delete=ord.Orders_pt.id) }}">Удалить</a>
+              </td>
+			</tr>
+          {% endfor %}
+		  </tbody>
+	  </table>
+	</div>
+{% endblock %}

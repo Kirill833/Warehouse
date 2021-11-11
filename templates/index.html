@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block userlogo %}
+	admin (take from DB)
+{% endblock %}
+
+{% block content %}
+
+<section class="hero-banner py-5">
+    <div class="container">
+        <div class="row row align-items-center">
+            <div class="col-lg-5 offset-lg-1 order-lg-1">
+                <img src="{{ url_for('static', filename='wh_large.png') }}" class="img-fluid" alt="Web Development">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="mt-3">Управляй складами легко!</h1>
+                <p class="lead text-secondary my-5">Добро пожаловать в новый сервис управления складами,
+                    где вы без труда сможете контролировать процессы работы вашего склада.</p>
+                <a href="/register" class="btn btn-outline-secondary btn-lg border">Регистрируйся</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero-banner{
+        background-color: #e2f9ff;
+    }
+    .hero-banner h1 {
+        font-size: 48px;
+    }
+    .hero-banner .btn {
+        position: relative;
+        overflow: hidden;
+        z-index: 9;
+    }
+    .hero-banner .btn-primary {
+        color: #2f2f41;
+        background-color: rgba(1, 164, 121, 0.1);
+        border-color: #01a479;
+    }
+    .hero-banner .btn:before {
+        content: "";
+        background: #ed5561;
+        width: 4px;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        -webkit-transition: all 0.5s ease-in-out 0s;
+        -moz-transition: all 0.5s ease-in-out 0s;
+        -ms-transition: all 0.5s ease-in-out 0s;
+        -o-transition: all 0.5s ease-in-out 0s;
+        transition: all 0.5s ease-in-out 0s;
+    }
+    .hero-banner .btn:hover:before {
+        width: 100%;
+    }
+</style>
+{% endblock %}

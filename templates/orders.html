@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-5">
+		<a href="/orders/form_creat_order" class="btn btn-outline-primary btn-lg mx-2">Создать заказ</a>
+	</div>
+
+	<div class="bd-example m-5">
+	  <table class="table table-success table-striped">
+		  <thead>
+			<tr>
+			  <th scope="col"></th>
+              <th scope="col">Менеджер</th>
+			  <th scope="col">Поставщик</th>
+			  <th scope="col">Дата</th>
+              <th scope="col"></th>
+			</tr>
+		  </thead>
+		  <tbody>
+              {% for ord in data %}
+                <tr>
+                  <th>{{ loop.index }}</th>
+                  <td>{{ ord.User.name }} {{ ord.User.last_name }}</td>
+                  <td>{{ ord.Suppliers.name_sl }}</td>
+                  <td>{{ time.localtime(ord.Orders.datetime).tm_mday }}-{{
+                          time.localtime(ord.Orders.datetime).tm_mon }}-{{ time.localtime(ord.Orders.datetime).tm_year }}
+                            {{ time.localtime(ord.Orders.datetime).tm_hour }}:{{ time.localtime(ord.Orders.datetime).tm_min }}</td>
+                  <td>
+                      <a href="{{ url_for('order_view', id_order=ord.Orders.id) }}">Перечень товаров</a>
+                      <a style="color: red; margin-left: 10px;" href="{{ url_for('delete_order', id_delete=ord.Orders.id) }}">Удалить</a>
+                  </td>
+                </tr>
+              {% endfor %}
+		  </tbody>
+	  </table>
+	</div>
+{% endblock %}

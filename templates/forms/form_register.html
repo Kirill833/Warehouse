@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<div class="d-flex justify-content-center col-md-4 mx-auto">
+	<form class="form-horizontal w-100 mx-5 mt-5" method="POST">
+  <fieldset>
+
+  <!-- Form Name -->
+  <legend>Регистрация</legend>
+
+  <!-- Text input-->
+	<div class="form-group">
+	  <label class="col-md-12 control-label" for="name_em">Имя</label>
+	  <div class="col-md-12">
+	  <input id="name_creat_employees_form" name="name" type="text" placeholder="Введите имя" class="form-control input-md">
+
+	  </div>
+	</div><br>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-12 control-label" for="user_login">Логин</label>
+    <div class="col-md-12">
+    <input id="user_login" name="login" type="number" placeholder="Введите номер телефона" class="form-control input-md">
+    </div>
+  </div><br>
+
+  <!-- Password input-->
+  <div class="form-group">
+    <label class="col-md-12 control-label" for="user_password">Пароль</label>
+    <div class="col-md-12">
+      <input id="user_password" name="password" type="password" placeholder="Пароль: " class="form-control input-md">
+    </div>
+  </div><br>
+
+  <!-- Password input-->
+  <div class="form-group">
+    <label class="col-md-12 control-label" for="repeat_password">Повторите пароль</label>
+    <div class="col-md-12">
+      <input id="repeat_password" name="password2" type="password" placeholder="Повторите пароль" class="form-control input-md">
+    </div>
+  </div><br>
+
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-md-12 control-label" for="auth_button"></label>
+    <div class="col-md-12">
+      <button class="btn btn-primary" type="submit" value="Register">Регистрация</button>
+    </div>
+  </div><br>
+
+  </fieldset>
+  </form>
+</div>
+
+{% endblock %}

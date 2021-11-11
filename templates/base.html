@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление складом</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/bootstrap-5.0.0-beta3-dist/css/bootstrap.min.css') }}">
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            {% if (current_user.is_authenticated == False) %}
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    УПРАВЛЕНИЕ СКЛАДОМ |</a>
+            {% else %}
+                <a href="{{ url_for('admin') }}"
+                   class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    УПРАВЛЕНИЕ СКЛАДОМ |</a>
+            {% endif %}
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                {% if (current_user.is_authenticated == True) %}
+                    <li><a href="{{ url_for('warehouse') }}" class="nav-link px-2 text-white">Склады</a></li>
+                    <li><a href="{{ url_for('product_manage') }}" class="nav-link px-2 text-white">Товары</a></li>
+                    <li><a href="{{ url_for('orders') }}" class="nav-link px-2 text-white">Заказы</a></li>
+                    <li><a href="{{ url_for('suppliers') }}" class="nav-link px-2 text-white">Поставщики</a></li>
+                    {% if current_user.role == 1 %}
+                        <li><a href="{{ url_for('employees') }}" class="nav-link px-2 text-white">Сотрудники</a></li>
+                        <li><a href="{{ url_for('reports') }}" class="nav-link px-2 text-white">Отчёты</a></li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+
+            <div class="text-end">
+                {% if (current_user.is_authenticated == False) %}
+                    <a href="/login">
+                        <button type="button" class="btn btn-outline-light me-2">Авторизация</button>
+                    </a>
+                    <a href="/register">
+                        <button type="button" class="btn btn-warning">Регистрация</button>
+                    </a>
+                {% else %}
+                    <a href="">{% block role %}{% endblock %}{{ current_user.name }}</a>
+                    <a style="color: red; margin-left: 15px;" href="{{ url_for('logout') }}">Выйти</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% block content %}{% endblock %}
+
+<footer></footer>
+
+</body>
+</html>
+

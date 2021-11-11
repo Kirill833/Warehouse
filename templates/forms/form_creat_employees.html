@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="d-flex justify-content-center col-md-4 mx-auto">
+	<form class="form-horizontal w-100 mx-5 mt-5" method="POST">
+	<fieldset>
+
+	<!-- Form Name -->
+	<legend>Форма создания сотрудника</legend>
+
+	<!-- Text input-->
+	<div class="form-group">
+	  <label class="col-md-12 control-label" for="name_em">Имя</label>
+	  <div class="col-md-12">
+	  <input id="name_creat_employees_form" name="name_em" type="text" placeholder="Введите имя" class="form-control input-md">
+
+	  </div>
+	</div><br>
+
+	<!-- Text input-->
+	<div class="form-group">
+	  <label class="col-md-12 control-label" for="lname_em">Фамилия</label>
+	  <div class="col-md-12">
+	  <input id="fname_creat_employees_form" name="lname_em" type="text" placeholder="Введите фамилию" class="form-control input-md">
+
+	  </div>
+	</div><br>
+
+	<!-- Select Basic -->
+	<div class="form-group align-self-start">
+	  <label class="col-md-12 control-label" for="role">Должность</label>
+	  <div class="col-md-12">
+		<select id="role" name="role" class="form-select">
+            {% for r in role %}
+              <option value="{{ r.id }}">{{ r.name_role }}</option>
+            {% endfor %}
+		</select>
+	  </div>
+	</div><br>
+
+	<!-- Multiple Checkboxes -->
+<div>
+	<form class="form-horizontal w-100 mx-5 mt-5" method="POST">
+	  <div class="col-md-12">
+          {% for wh in data %}
+{#              <p>{{ loop.index }}</p>#}
+              <div class="checkbox">
+                <label for="warehouse_{{ loop.index }}">
+                  <input type="radio" name="warehouses" id="warehouse_{{ loop.index }}" value="{{ wh.id }}">
+                    {{ wh.name_wh }}
+                </label>
+                </div>
+          {% endfor %}
+	  </div>
+	</div><br>
+
+	<!-- Text input-->
+	<div class="form-group">
+	  <label class="col-md-12 control-label" for="login_creat_employees_form">Логин</label>
+	  <div class="col-md-12">
+	  <input id="login_creat_employees_form" name="login" type="number" placeholder="Введите номер телефона" class="form-control input-md">
+
+	  </div>
+	</div><br>
+
+	<!-- Text input-->
+	<div class="form-group">
+	  <label class="col-md-12 control-label" for="pass_creat_employees_form">Пароль</label>
+	  <div class="col-md-12">
+	  <input id="pass_creat_employees_form" name="password" type="text" placeholder="Введите пароль" class="form-control input-md">
+
+	  </div>
+	</div><br>
+
+
+	<!-- Button -->
+	<div class="form-group">
+	  <label class="col-md-12 control-label" for="button_creat_employees_form"></label>
+	  <div class="col-md-12">
+		<button id="button_creat_employees_form" class="btn btn-primary" type="submit">Создать профиль сотрудника</button>
+	  </div>
+	</div>
+
+	</fieldset>
+	</form>
+
+</div>
+{% endblock %}

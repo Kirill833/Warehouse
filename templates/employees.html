@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+	<div class="employees_container">
+		<div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-5">
+			<a href="employees/form_creat_employees" class="btn btn-outline-primary btn-lg mx-2">Создать сотрудника</a>
+		</div>
+
+
+	<div class="bd-example m-5">
+	  <table class="table table-success table-striped">
+		  <thead>
+			<tr>
+			  <th scope="col"></th>
+			  <th scope="col">Имя сотрудника</th>
+			  <th scope="col">Должность</th>
+			  <th scope="col">Склад</th>
+			  <th scope="col">Номер телефона / Логин</th>
+			  <th scope="col"></th>
+			</tr>
+		  </thead>
+		  <tbody>
+          {% for epl in data %}
+			<tr>
+			  <th scope="row">{{ loop.index }}</th>
+			  <td>{{ epl.User }} {{ epl.User.last_name }}</td>
+			  <td>{{ epl.Role.name_role }}</td>
+			  <td>{{ epl.Creat_warehouse.name_wh }}</td>
+			  <td>{{ epl.User.login }}</td>
+			  <td>
+{#                  <a href="" class="settings_employees">Настройки профиля</a>#}
+                  <a style="color: red" href="{{ url_for('employees', id_delete=epl.id) }}">Удалить</a>
+              </td>
+			</tr>
+          {% endfor %}
+		  </tbody>
+	  </table>
+	</div>
+{% endblock %}

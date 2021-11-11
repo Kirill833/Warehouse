@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>
+<p>{{ income_whs }}</p>
+<p class="text-center mt-5 h3">Отчёты</p>
+<div class="bd-example m-0 px-5">
+
+  <table class="table table-success table-striped mb-5">
+  <h5>Поставки:</h5>
+      <thead>
+        <tr>
+          <th scope="col">Дата</th>
+          <th scope="col">Склад</th>
+          <th scope="col">Менеджер</th>
+          <th scope="col">Поставщик</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for dl in deliv_data %}
+            <tr>
+              <td>{{ time.localtime(dl.Deliveries.datetime).tm_mday }}-{{
+                          time.localtime(dl.Deliveries.datetime).tm_mon }}-{{ time.localtime(dl.Deliveries.datetime).tm_year }}
+                            {{ time.localtime(dl.Deliveries.datetime).tm_hour }}:{{ time.localtime(dl.Deliveries.datetime).tm_min }}</td>
+              <td>{{ dl.Creat_warehouse.name_wh }}</td>
+              <td>{{ dl.User.name }}</td>
+              <td>{{ dl.Suppliers.name_sl }}</td>
+              <td><buttom onclick="$('#show{{ loop.index }}').toggle();" class="btn btn-link">Перечень товаров</buttom></td>
+            </tr>
+            <tr>
+              <td colspan="5">
+                  <table id="show{{ loop.index }}" class="table table-sm table-bordered table-light" style="display: none">
+                    <thead>
+                        <tr>
+                          <th scope="col">Наименование товара</th>
+                          <th scope="col">Количество</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for dpt in del_pt %}
+                        {% if dpt.Deliveries_pt.id_deliveries == dl.Deliveries.id %}
+                          <tr>
+                              <td>{{ dpt.Creat_product.name_pt }}</td>
+                              <td>{{ dpt.Deliveries_pt.quantity }} <i>{{ dpt.Creat_product.units }}</i></td>
+                          </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                  </table>
+              </td>
+            </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+
+{#    ------------------------#}
+
+  <table class="table table-success table-striped mb-5">
+  <h5>Отгрузки:</h5>
+      <thead>
+        <tr>
+          <th scope="col">Дата</th>
+          <th scope="col">Склад</th>
+          <th scope="col">Менеджер</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for sh in ship_data %}
+            <tr>
+              <td>{{ time.localtime(sh.Shipment.datetime).tm_mday }}-{{
+                          time.localtime(sh.Shipment.datetime).tm_mon }}-{{ time.localtime(sh.Shipment.datetime).tm_year }}
+                            {{ time.localtime(sh.Shipment.datetime).tm_hour }}:{{ time.localtime(sh.Shipment.datetime).tm_min }}</td>
+              <td>{{ sh.Creat_warehouse.name_wh }}</td>
+              <td>{{ sh.User.name }}</td>
+              <td><buttom onclick="$('#show_sh{{ loop.index }}').toggle();" class="btn btn-link">Перечень товаров</buttom></td>
+            </tr>
+            <tr>
+              <td colspan="5">
+                  <table id="show_sh{{ loop.index }}" class="table table-sm table-bordered table-light" style="display: none">
+                    <thead>
+                        <tr>
+                          <th scope="col">Наименование товара</th>
+                          <th scope="col">Количество</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for shpt in ship_pt %}
+                        {% if shpt.Shipment_pt.id_shipment == sh.Shipment.id %}
+                          <tr>
+                              <td>{{ shpt.Creat_product.name_pt }}</td>
+                              <td>{{ shpt.Shipment_pt.quantity }} <i>{{ shpt.Creat_product.units }}</i></td>
+                          </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                  </table>
+              </td>
+            </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+
+{#    ------------------------#}
+
+  <table class="table table-success table-striped mb-5">
+  <h5>Списания:</h5>
+      <thead>
+        <tr>
+          <th scope="col">Дата</th>
+          <th scope="col">Склад</th>
+          <th scope="col">Менеджер</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for dbt in deb_data %}
+            <tr>
+              <td>{{ time.localtime(dbt.Debiting.datetime).tm_mday }}-{{
+                          time.localtime(dbt.Debiting.datetime).tm_mon }}-{{ time.localtime(dbt.Debiting.datetime).tm_year }}
+                            {{ time.localtime(dbt.Debiting.datetime).tm_hour }}:{{ time.localtime(dbt.Debiting.datetime).tm_min }}</td>
+              <td>{{ dbt.Creat_warehouse.name_wh }}</td>
+              <td>{{ dbt.User.name }}</td>
+              <td><buttom onclick="$('#show_dbt{{ loop.index }}').toggle();" class="btn btn-link">Перечень товаров</buttom></td>
+            </tr>
+            <tr>
+              <td colspan="5">
+                  <table id="show_dbt{{ loop.index }}" class="table table-sm table-bordered table-light" style="display: none">
+                    <thead>
+                        <tr>
+                          <th scope="col">Наименование товара</th>
+                          <th scope="col">Количество</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for dbtpt in deb_pt %}
+                        {% if dbtpt.Debiting_pt.id_debiting == dbt.Debiting.id %}
+                          <tr>
+                              <td>{{ dbtpt.Creat_product.name_pt }}</td>
+                              <td>{{ dbtpt.Debiting_pt.quantity }} <i>{{ dbtpt.Creat_product.units }}</i></td>
+                          </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                  </table>
+              </td>
+            </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+
+{#    ------------------------#}
+
+  <table class="table table-success table-striped mb-5">
+  <h5>Инвентаризация:</h5>
+      <thead>
+        <tr>
+          <th scope="col">Дата</th>
+          <th scope="col">Склад</th>
+          <th scope="col">Менеджер</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for inv in invent_data %}
+            <tr>
+              <td>{{ time.localtime(inv.Inventory.datetime).tm_mday }}-{{
+                          time.localtime(inv.Inventory.datetime).tm_mon }}-{{ time.localtime(inv.Inventory.datetime).tm_year }}
+                            {{ time.localtime(inv.Inventory.datetime).tm_hour }}:{{ time.localtime(inv.Inventory.datetime).tm_min }}</td>
+              <td>{{ inv.Creat_warehouse.name_wh }}</td>
+              <td>{{ inv.User.name }}</td>
+              <td><buttom onclick="$('#show_inv{{ loop.index }}').toggle();" class="btn btn-link">Перечень товаров</buttom></td>
+            </tr>
+            <tr>
+              <td colspan="5">
+                  <table id="show_inv{{ loop.index }}" class="table table-sm table-bordered table-light" style="display: none">
+                    <thead>
+                        <tr>
+                          <th scope="col">Наименование товара</th>
+                          <th scope="col">Кол-во в системе</th>
+                          <th scope="col">Кол-во на складе</th>
+                          <th scope="col">Разница</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for invpt in invent_pt %}
+                        {% if invpt.Inventory_pt.id_inventory == inv.Inventory.id %}
+                          <tr>
+                              <td>{{ invpt.Creat_product.name_pt }}</td>
+                              <td>{{ invpt.Inventory_pt.quantity }} <i>{{ invpt.Creat_product.units }}</i></td>
+                              <td>{{ invpt.Inventory_pt.quantity_sys }} <i>{{ invpt.Creat_product.units }}</i></td>
+                              <td>
+                                  {% if invpt.Inventory_pt.difference < 0 %}
+                                      <span style="color: darkred">Недостача: {{ invpt.Inventory_pt.difference|abs }}</span>
+                                    {% elif invpt.Inventory_pt.difference > 0 %}
+                                      <span style="color: darkolivegreen">Избыток: {{ invpt.Inventory_pt.difference|abs }}</span>
+                                    {% else %}
+                                      <span>0</span>
+                                  {% endif %}
+                              </td>
+                          </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                  </table>
+              </td>
+            </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+
+    {#    ------------------------#}
+
+
+    <table class="table table-success table-striped">
+    <h5>Доход:</h5>
+      <thead>
+        <tr>
+          <th scope="col">Склад</th>
+{#          <th scope="col">Прибыль</th>#}
+          <th scope="col">За сутки</th>
+          <th scope="col">За месяц</th>
+          <th scope="col">За квартал</th>
+        </tr>
+      </thead>
+      <tbody>
+      <p></p>
+      {% for inc in income_whs_q %}
+        <tr>
+          <td>{{ inc }}</td>
+          <td>{{ income_whs_day[inc] }}</td>
+          <td>{{ income_whs_mon[inc] }}</td>
+          <td>{{ income_whs_q[inc] }}</td>
+{#          <td>28000</td>#}
+{#          <td>{{ db.session.query(db.func.sum(Shipment_pt.quantity).label("total_amount")).filter_by(id_shipment=inc.Shipment.id)\#}
+{#          .filter().first().total_amount }}</td>#}
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

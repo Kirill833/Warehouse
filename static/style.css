@@ -1,0 +1,345 @@
+*{
+	padding: 0;
+	margin: 0;
+	text-decoration: 0;
+}
+
+a{
+	text-decoration: none;
+}
+
+html{
+	font-size: 16px;
+}
+
+/*header{*/
+/*	display: flex;*/
+/*	justify-content: space-between;*/
+/*	width: 100%;*/
+/*	height: 60px;*/
+/*	background-color: #37DA7E;*/
+/*}*/
+
+.logo{
+	display: inline-block;
+	line-height: 60px;
+	margin-left: 5%;
+	color: #FFF;
+	font-size: 2em;
+	font-family: arial;
+}
+
+.user_logo{
+	display: inline-block;
+	color: #FFF;
+	font-size: 2em;
+	font-family: arial;
+	margin-right: 5%;
+	line-height: 60px;
+}
+
+
+.main_buttons{
+	width: 60%;
+	height: 150px;
+	margin: 100px auto;
+	background-color: #ссс;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	column-gap: 20px;
+}
+
+.warehouse{
+	background-color: #FF6840;
+	width: 100%;
+	height: 100%;
+}
+
+.product{
+	background-color: #FFAA40;
+	width: 100%;
+	height: 100%;
+}
+
+.employee{
+	background-color: #EB3B88;
+	width: 100%;
+	height: 100%;
+}
+
+.main_buttons button{
+	color: #FFF;
+	font-size: 1.5rem;
+}
+
+
+
+/*-----------warehouse------------*/
+
+.menu_buttons_wh{
+	width: 25%;
+	height: 30px;
+	margin: 50px auto;
+	font-size: 1.5em;
+	display: flex;
+	justify-content: space-between;
+}
+
+.warehouse_block{
+	width: 40%;
+	height: 70px;
+	margin: 0 auto;
+	padding: 0 20px;
+	background-color: yellow;
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.1em;
+	font-family: Arial;
+}
+
+.wh_name{
+	line-height: 70px;
+	display: inline-block;
+}
+
+.remove_warehouse{
+	line-height: 70px;
+}
+
+/*---------end warehouse----------*/
+
+
+
+
+
+
+/*-------------warehouse view--------------*/
+	
+.title_name_wh{
+	margin-top: 40px;
+	text-align: center;
+	font-family: Arial;
+	font-size: 1.5em;
+
+}
+
+.title_product_block{
+	width: 40%;
+	height: 70px;
+	line-height: 70px;
+	margin: 0 auto;
+	padding: 0 20px;
+	background-color: pink;
+	margin-bottom: 15px;
+	display: flex;
+	justify-content: space-between;
+	
+}
+.name_title{
+	flex: 1;
+}
+.quantity_title{
+	flex: 1;
+	text-align: center;
+}
+.zero_block{
+	flex: 1;
+}
+.shelf_life_title{
+	flex: 1;
+	text-align: center;
+}
+
+
+.product_block{
+	width: 40%;
+	height: 70px;
+	line-height: 70px;
+	margin: 0 auto;
+	padding: 0 20px;
+	background-color: grey;
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.1em;
+	font-family: Arial;
+	
+}
+
+.menu_buttons_wh_view{
+	width: 60%;
+	height: 30px;
+	margin: 50px auto;
+	font-size: 1.5em;
+	display: flex;
+	justify-content: space-between;
+}
+
+.product_name{
+	flex: 1;
+}
+
+.shelf_life{
+	text-align: center;
+	flex: 1;
+}
+.quantity{
+	flex: 1;
+	text-align: center;
+}
+.change_product{
+	flex: 1;
+	text-align: right;
+}
+
+/*-----------! end warehouse view !------------*/
+
+
+
+
+/*------------ product manage ----------------*/
+
+.article_title{
+	flex: 1;
+	text-align: center;
+}
+
+.article{
+	flex: 1;
+	text-align: center;
+}
+
+.menu_buttons_product{
+	width: 60%;
+	height: 30px;
+	margin: 50px auto;
+	font-size: 1.5em;
+	display: flex;
+	/*justify-content: space-between;*/
+	justify-content: center;
+ }
+
+
+/*----------! end product manage !--------------*/
+
+
+
+/*------------ form_creat_product ---------------*/
+
+.form_creat_product{
+	width: 30%;
+	margin: 40px auto;
+}
+
+.button_product_form{
+	margin: 20px 0;
+	width: 150px;
+	height: 40px;
+	/*background-color: red;*/
+}
+.input_creat_product{
+	width: 200px;
+	height: 30px;
+}
+
+/*-----------! form_creat_product !--------------*/
+
+
+
+
+
+/*----------------- media -------------------*/
+
+@media (max-width: 1480px) {
+	html{
+		font-size: 12px;
+	}
+}
+
+
+/*----------------! end media !------------------*/
+
+
+
+
+/*------------------- employees -------------------*/
+
+
+	.menu_buttons_employees{
+		width: 60%;
+		height: 30px;
+		margin: 50px auto;
+		font-size: 1.5em;
+		display: flex;
+		/*justify-content: space-between;*/
+		justify-content: center;
+	 }
+
+	 .title_employees_block{
+		width: 40%;
+		height: 70px;
+		line-height: 70px;
+		margin: 0 auto;
+		padding: 0 20px;
+		background-color: pink;
+		margin-bottom: 15px;
+		display: flex;
+		justify-content: space-between;
+		
+	}
+
+	.employees_block{
+		width: 40%;
+		height: 70px;
+		line-height: 70px;
+		margin: 0 auto;
+		padding: 0 20px;
+		background-color: grey;
+		margin-bottom: 10px;
+		display: flex;
+		justify-content: space-between;
+		font-size: 1.1em;
+		font-family: Arial;
+		
+	}
+
+/*----------------! end employees !------------------*/
+
+
+td, th{
+	text-align: center;
+}
+
+.form_container{
+	margin: 50px 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

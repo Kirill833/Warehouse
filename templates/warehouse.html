@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-5">
+		<a href="/warehouse/form_creat_warehouse" class="btn btn-outline-primary btn-lg mx-2">Добавить склад</a>
+{#		<a href="/warehouse/form_transfer_product" class="btn btn-outline-primary btn-lg mx-2">Переместить товары</a>#}
+	</div>
+
+	<div class="bd-example m-5">
+	  <table class="table table-success table-striped">
+		  <thead>
+			<tr>
+			  <th scope="col"></th>
+			  <th scope="col">Название склада</th>
+			  <th scope="col"></th>
+			</tr>
+		  </thead>
+		  <tbody>
+              {% for wh in data %}
+                <tr>
+                  <th scope="row">{{ loop.index }}</th>
+                  <td><a href="{{ url_for('warehouse_view', wh_id=wh.id) }}">{{ wh }}</a></td>
+                  <td>
+{#                      <a href="" class="remote_warehouse">Настройки склада</a>#}
+                      <a style="color: red" href="{{ url_for('delete_warehouse', id_delete=wh.id) }}">Удалить</a>
+                  </td>
+                </tr>
+              {% endfor %}
+		  </tbody>
+	  </table>
+	</div>
+{% endblock %}

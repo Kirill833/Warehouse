@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<script>
+	var counter = 1;
+	var dynamicInput = [];
+
+	function addInput(){
+	    var newdiv = document.createElement('div');
+	    newdiv.id = counter;
+	    dynamicInput[counter] = counter;
+	    newdiv.innerHTML = '<br><div class="form-group"><div class="col-md-12"> <div class="input-group"><select required id="products" name="products" class="form-select"><option value="" selected hidden>Выберите товар</option>{% for pt in pts %}<option value="{{ pt.id}}">{{ pt.name_pt + ' (' + pt.units + ')' }}</option>{% endfor %} </select><div class="input-group-append"><div class="input-group"><input required id="quantity" name="quantity" type="number" placeholder="Количество" class="form-control input-md"><input class="btn btn-outline-secondar btn-danger" type="button" value="-" onClick="removeInput('+dynamicInput[counter]+');"></div></div></div></div></div>';
+	    document.getElementById('formulario').appendChild(newdiv);
+	    counter++;
+	}
+
+	  function removeInput(id){
+	    var elem = document.getElementById(id);
+	    return elem.parentNode.removeChild(elem);
+	  }
+</script>
+
+
+
+<!-- Select Basic -->
+<div class="d-flex justify-content-center col-md-4 mx-auto">
+	<form class="form-horizontal w-100 mx-5 mt-5" method="POST">
+		<fieldset id="formulario">
+
+        <!-- Form Name -->
+        <legend>Заказ</legend>
+
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="warehouses">Склады:</label>
+          <div class="col-md-12">
+              <select required name="warehouses" class="form-select">
+                <option value="" selected disabled hidden>Укажите склад</option>
+                {% for wh in whs %}
+                  <option value="{{ wh.id }}">{{ wh.name_wh }}</option>
+                {% endfor %}
+              </select>
+          </div>
+        </div><br>
+
+
+    <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="supplier">Поставщик</label>
+          <div class="col-md-12">
+            <select required id="suppliers" name="supplier" class="form-select">
+                <option value="" selected disabled hidden>Укажите поставщика</option>
+                {% for spl in spls %}
+                  <option value="{{ spl.id }}">{{ spl }}</option>
+                {% endfor %}
+            </select>
+          </div>
+        </div><br>
+
+        <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="products">Товар</label>
+          <div class="col-md-12">
+              <div class="input-group">
+                <select required id="products" name="products" class="form-select">
+                    <option value="" selected hidden>Выберите товар</option>
+                    {% for pt in pts %}
+                      <option value="{{ pt.id}}">{{ pt.name_pt + ' (' + pt.units + ')' }}</option>
+                    {% endfor %}
+                </select>
+                  <div class="input-group-append col-md-3">
+                    <input required id="quantity" name="quantity" type="number" placeholder="Количество" class="form-control input-md">
+                  </div>
+              </div>
+          </div>
+        </div>
+
+		</fieldset>
+        <br>
+
+    <div class="col-md-12">
+        <input class="btn btn-success" type="button" value="+ Добавить ещё одну позицию" onClick="addInput();">
+    </div>
+
+    <!-- Button -->
+		<div class="form-group">
+		  <label class="col-md-12 control-label" for="button_creat_warehouse"></label>
+		  <div class="col-md-12">
+			<button id="button_creat_warehouse" class="btn btn-primary" type="submit">Создать заказ</button>
+		  </div>
+		</div>
+    </form>
+
+</div>
+{% endblock %}

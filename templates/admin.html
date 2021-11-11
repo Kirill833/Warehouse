@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block role %} {{ role }}: {% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-5">
+    <div class="row justify-content-center" >
+        <a href="{{ url_for('warehouse') }}" class="col-md-2 btn btn-success btn-lg btn-block btn-huge py-5 m-2">Склады</a>
+        <a href="{{ url_for('product_manage') }}" class="col-md-2 btn btn-success btn-lg btn-block btn-huge py-5 m-2">Товары</a>
+        <a href="{{ url_for('orders') }}" class="col-md-2 btn btn-success btn-lg btn-block btn-huge py-5 m-2">Заказы</a>
+    </div>
+    <div class="row justify-content-center mb-5">
+        <a href="{{ url_for('suppliers') }}" class="col-md-2 btn btn-success btn-lg btn-block btn-huge py-5 m-2">Поставщики</a>
+        {% if current_user.role == 1 %}
+            <a href="{{ url_for('employees') }}" class="col-md-2 btn btn-success btn-lg btn-block btn-huge py-5 m-2">Сотрудники</a>
+            <a href="{{ url_for('reports') }}" class="col-md-2 btn btn-success btn-lg btn-block btn-huge py-5 m-2">Отчёты</a>
+        {% endif %}
+    </div>
+</div>
+
+
+{% if current_user.role == 1 %}
+    <main class="col-md-10 m-auto">
+      <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2 text-center">Маржинальность</h1>
+      </div>
+        <canvas class="my-4 mx-auto w-75" id="myChart" width="900" height="280"></canvas>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    <script>
+        (function () {
+          'use strict'
+
+          feather.replace()
+
+          // Graphs
+          var ctx = document.getElementById('myChart')
+          // eslint-disable-next-line no-unused-vars
+          var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: [
+                  {% for inc in income %}
+                    '{{ time.localtime(inc).tm_mday }}',
+                  {% endfor %}
+              ],
+              datasets: [{
+                data: [
+                  {% for inc in income %}
+                    {{ income[inc] }},
+                  {% endfor %}
+                ],
+                lineTension: 0,
+                backgroundColor: 'transparent',
+                borderColor: '#007bff',
+                borderWidth: 4,
+                pointBackgroundColor: '#007bff'
+              }]
+            },
+            options: {
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: false
+                  }
+                }]
+              },
+              legend: {
+                display: false
+              }
+            }
+          })
+        })()
+    </script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<!--	<div class="product_container">-->
+		<div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-5">
+			<a href="product_manage/form_creat_product" class="btn btn-outline-primary btn-lg mx-2">Создать товар</a>
+		</div>
+
+
+
+	<div class="bd-example m-5">
+	  <table class="table table-success table-striped">
+		  <thead>
+			<tr>
+			  <th scope="col"></th>
+			  <th scope="col">Название товара</th>
+			  <th scope="col">Артикул</th>
+			  <th scope="col">Цена закупки</th>
+			  <th scope="col">Цена реализации</th>
+			  <th scope="col"></th>
+			</tr>
+		  </thead>
+		  <tbody>
+          {% for pt in data %}
+			<tr>
+			  <th scope="row">{{ loop.index }}</th>
+			  <td>{{ pt }}</td>
+			  <td>{{ pt.article }}</td>
+			  <td>{{ pt.buy_price }}</td>
+			  <td>{{ pt.sell_price }}</td>
+			  <td>
+{#                  <a href="" class="change_product">Настройки товара</a>#}
+                  <a style="color: red" href="{{ url_for('product_manage')+ '/' + pt.id.__str__() }}">Удалить</a>
+              </td>
+			</tr>
+          {% endfor %}
+		  </tbody>
+	  </table>
+	</div>
+{% endblock %}

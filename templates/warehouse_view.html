@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p class="text-center mt-5 h3">{{ name }}</p>
+<div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-5">
+    <a href="{{ url_for('form_deliveries', wh_id = wh_id) }}" class="btn btn-outline-primary btn-lg mx-2">Принять поставку</a>
+    <a href="{{ url_for('form_shipment', wh_id = wh_id) }}" class="btn btn-outline-primary btn-lg mx-2">Отгрузка</a>
+    <a href="{{ url_for('form_debiting', wh_id = wh_id) }}" class="btn btn-outline-primary btn-lg mx-2">Списать товар</a>
+    <a href="{{ url_for('form_inventory', wh_id = wh_id) }}" class="btn btn-outline-primary btn-lg mx-2">Инвентарицация</a>
+</div>
+
+<div class="bd-example m-5">
+  <table class="table table-success table-striped">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Название товара</th>
+          <th scope="col">В наличии</th>
+{#          <th scope="col">Годен до</th>#}
+        </tr>
+      </thead>
+      <tbody>
+      {% for pt in pts %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ pt.Creat_product.name_pt }}</td>
+          <td>{{ pt.Stock.quantity }}  <i style="margin-left: 10px;">{{pt.Creat_product.units }}</i></td>
+{#          <td>{{ sd }}</td>#}
+        </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+{% endblock %}
