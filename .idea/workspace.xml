@@ -1327,6 +1327,14 @@
       <screen x="0" y="25" width="1792" height="1095" />
     </state>
     <state width="1750" height="180" key="GridCell.Tab.0.right/0.25.1792.1095@0.25.1792.1095" timestamp="1635183128639" />
+    <state x="713" y="290" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1636639015734">
+      <screen x="0" y="25" width="1792" height="1095" />
+    </state>
+    <state x="713" y="290" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.25.1792.1095@0.25.1792.1095" timestamp="1636639015734" />
+    <state x="718" y="450" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1636639230260">
+      <screen x="0" y="25" width="1792" height="1095" />
+    </state>
+    <state x="718" y="450" key="git4idea.remote.GitConfigureRemotesDialog/0.25.1792.1095@0.25.1792.1095" timestamp="1636639230260" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/diplom$main.coverage" NAME="main Coverage Results" MODIFIED="1635168959969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
